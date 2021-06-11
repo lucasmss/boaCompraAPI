@@ -6,7 +6,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.boaCompraAPI</groupId>
 	<artifactId>boaCompraAPI</artifactId>
@@ -15,6 +14,10 @@
 	<description>Projeto de e-commerce</description>
 	<properties>
 		<java.version>11</java.version>
+		
+		 <maven.compiler.source>1.8</maven.compiler.source>
+		 <maven.compiler.target>1.8</maven.compiler.target>
+
 	</properties>
 	<dependencies>
 		<dependency>
