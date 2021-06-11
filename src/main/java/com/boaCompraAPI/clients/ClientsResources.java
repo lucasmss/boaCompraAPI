@@ -41,9 +41,9 @@ public class ClientsResources {
 
 	@GetMapping("/clients")
 	@ApiOperation(value = "Retorna uma lista de Clientes")
-	public ResponseEntity<List<Clients>> findlAll() {
-		List<Clients> clients = clientsService.findAll();
-		return ResponseEntity.ok().body(clients);
+	public List<Clients> findlAll() {
+		 
+		return clientsService.findAll();
 	}
 
 	@GetMapping("/clients/{id}")
