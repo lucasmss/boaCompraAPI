@@ -37,9 +37,6 @@ public class Address implements Serializable{
 	@Column(name = "BAIRRO", nullable = false)
 	private String bairro;
 
-	@Column(name = "LOCALIDADE", nullable = false)
-	private String localidade;
-
 	@Column(name = "UF", nullable = false)
 	private String uf;
 	
@@ -86,14 +83,6 @@ public class Address implements Serializable{
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
-
-	public String getLocalidade() {
-		return localidade;
-	}
-
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
 	}
 
 	public String getUf() {

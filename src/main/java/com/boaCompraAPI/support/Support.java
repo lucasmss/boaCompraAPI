@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.boaCompraAPI.clients.Clients;
-import com.boaCompraAPI.enums.Evaluation;
+import com.boaCompraAPI.enums.EVALUATION;
 
 @Entity
 @Table(name = "TBL_SUPPORT")
@@ -29,7 +29,7 @@ public class Support  implements Serializable{
 	private String description;
 	
 	@Column(name = "SERVICE_EVALUATION", nullable = false)
-	private Evaluation service;
+	private EVALUATION service;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "clients_id")
@@ -51,11 +51,11 @@ public class Support  implements Serializable{
 		this.description = description;
 	}
 
-	public Evaluation getService() {
+	public EVALUATION getService() {
 		return service;
 	}
 
-	public void setService(Evaluation service) {
+	public void setService(EVALUATION service) {
 		this.service = service;
 	}
 

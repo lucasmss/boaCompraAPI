@@ -16,7 +16,7 @@ import javax.validation.constraints.Digits;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.boaCompraAPI.enums.Evaluation;
+import com.boaCompraAPI.enums.EVALUATION;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -42,7 +42,7 @@ public class Products implements Serializable {
 	private String description;
 	
 	@Column(name = "PRODUCT_EVALUATION", nullable = false)
-	private Evaluation evaluation;
+	private EVALUATION evaluation;
 
 	@Column(name = "PRODUCTPRICE")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0,00")
@@ -149,11 +149,11 @@ public class Products implements Serializable {
 		this.description = description;
 	}
 
-	public Evaluation getService() {
+	public EVALUATION getService() {
 		return evaluation;
 	}
 
-	public void setService(Evaluation evaluation) {
+	public void setService(EVALUATION evaluation) {
 		this.evaluation = evaluation;
 	}
 

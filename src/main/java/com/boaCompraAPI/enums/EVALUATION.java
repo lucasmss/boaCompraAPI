@@ -1,6 +1,6 @@
 package com.boaCompraAPI.enums;
 
-public enum Evaluation {
+public enum EVALUATION {
 	
 	REGULAR("0", "regular"),
 	BOM("1", "bom"),
@@ -9,7 +9,7 @@ public enum Evaluation {
 	
 	private String code;
 	private String evaluation;
-	private Evaluation(String code, String evaluation) {
+	private EVALUATION(String code, String evaluation) {
 		this.code = code;
 		this.evaluation = evaluation;
 	}

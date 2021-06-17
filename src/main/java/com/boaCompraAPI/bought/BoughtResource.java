@@ -1,4 +1,4 @@
-package com.boaCompraAPI.address;
+package com.boaCompraAPI.bought;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.boaCompraAPI.exceptions.ServiceException;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -30,37 +29,38 @@ import io.swagger.annotations.ApiParam;
 @Validated
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/v1")
-@Api(tags = { "Address" })
-public class AddressResources {
+@Api(tags = { "Comprados" }, description = "Operações relacionadas a gerenciamento de compras")
+public class BoughtResource {
+	
 	@Autowired
-	AddressService addressService;
+	BoughtService boughtService;
 
 	private static final String SUCESSO = "sucesso";
 
 	private static final String MENSAGEM = "mensagem";
 
-	@GetMapping("/address")
-	@ApiOperation(value = "Retorna uma lista de Endereco")
-	public ResponseEntity<List<Address>> findlAll() {
-		List<Address> address = addressService.findAll();
-		return ResponseEntity.ok().body(address);
+	@GetMapping("/bought")
+	@ApiOperation(value = "Retorna uma lista de Compras")
+	public List<Bought> findlAll() {
+		 
+		return boughtService.findAll();
 	}
 
-	@GetMapping("/address/{id}")
-	@ApiOperation(value = "Retorna o endereco por id")
-	public ResponseEntity<Address> findById(@PathVariable("id") Long id) {
-		Address address = addressService.findById(id);
-		return ResponseEntity.ok().body(address);
+	@GetMapping("/bought/{id}")
+	@ApiOperation(value = "Retorna o compra por id")
+	public ResponseEntity<Bought> findById(@PathVariable("id") Long id){
+		Bought bought = boughtService.findById(id);
+		return ResponseEntity.ok().body(bought);
 	}
 
-	@PostMapping("/address")
-	@ApiOperation(value = "Realiza o cadastro de endereco")
-	public ResponseEntity<Object> insert(@ApiParam(value = "Cadastro de endereco", required = true) @Valid @RequestBody Address address) 
+	@PostMapping("/bought")
+	@ApiOperation(value = "Realiza o cadastro de compra")
+	public ResponseEntity<Object> insert(@ApiParam(value = "Cadastro de compra", required = true) @Valid @RequestBody Bought bought) 
 			throws ServiceException {
 		HashMap<String, Object> response = new HashMap<>();
 
 		try {
-			address = addressService.insert(address);
+			bought = boughtService.insert(bought);
 		} catch (EntityNotFoundException e) {
 			response.put(SUCESSO, false);
 			response.put(MENSAGEM, e.getMessage());
@@ -71,22 +71,23 @@ public class AddressResources {
 			return ResponseEntity.status((HttpStatus) HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		response.put(SUCESSO, true);
-		response.put(MENSAGEM, "Endereco cadastrado com sucesso!");
-		response.put("Endereco", address);
+		response.put(MENSAGEM, "Compra cadastrado com sucesso!");
+		response.put("Bought", bought);
 		return ResponseEntity.ok().body(response);
 	}
 
-	@DeleteMapping(value = "/address/{id}")
-	@ApiOperation(value = "Deleta um endereco por id")
+	@DeleteMapping(value = "/bought/{id}")
+	@ApiOperation(value = "Deleta um compra por id")
 	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-				addressService.delete(id);
+		boughtService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 
-	@PutMapping(value = "/address/{id}")
-	@ApiOperation(value = "Atualiza endereco por id")
-	public ResponseEntity<Object> update(@ApiParam(value = "Atualizar de endereco", required = true) @PathVariable Long id, @Valid @RequestBody Address address) {
-		address = addressService.update(id, address);
-		return ResponseEntity.ok().body(address);
+	@PutMapping(value = "/bought/{id}")
+	@ApiOperation(value = "Atualiza compra por id")
+	public ResponseEntity<Bought> update(@PathVariable Long id, @RequestBody Bought bought) {
+		bought = boughtService.update(id, bought);
+		return ResponseEntity.ok().body(bought);
 	}
+
 }
