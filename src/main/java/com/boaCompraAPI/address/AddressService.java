@@ -67,7 +67,6 @@ public class AddressService {
 		address.setLogradouro(obj.getLogradouro());
 		address.setComplemento(obj.getComplemento());
 		address.setBairro(obj.getBairro());
-		address.setLocalidade(obj.getLocalidade());
 		address.setUf(obj.getUf());
 	
 	}

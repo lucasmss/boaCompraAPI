@@ -1,6 +1,6 @@
 package com.boaCompraAPI.clients;
 
-import java.io.Serializable; 
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
 import com.boaCompraAPI.enums.GENDER;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "TBL_CLIENTS")

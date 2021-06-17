@@ -4,7 +4,7 @@ public enum STATUSPAY {
 	
 	ANALISE("0", "analise"),
 	APROVADO("1", "aprovado"),
-	NEGADO("2", "negado"),
+	NEGADO("2", "negado");
 	
 	private String code;
 	private String statusPay;
