@@ -33,13 +33,7 @@ public class BoughtService {
 	}
 
 	public Bought insert(Bought bought) throws ServiceException {
-		try {
 			boughtRepository.save(bought);
-		} catch (Exception e) {
-			LOG.warn(ERROR_INSERT_CLIENTS);
-			LOG.warn(e.getMessage());
-			throw new ServiceException(ERROR_INSERT_CLIENTS);
-		}
 		return bought;
 	}
 

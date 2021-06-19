@@ -32,13 +32,7 @@ public class AddressService {
 	}
 
 	public Address insert(Address address) throws ServiceException {
-		try {
 			addressRepository.save(address);
-		} catch (Exception e) {
-			LOG.warn(ERROR_INSERT_CLIENTS);
-			LOG.warn(e.getMessage());
-			throw new ServiceException(ERROR_INSERT_CLIENTS);
-		}
 		return address;
 	}
 
