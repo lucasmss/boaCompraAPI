@@ -151,4 +151,9 @@ public class ProductsService {
 
     }
 
+	public Products getOne(Long id) {
+		Optional<Products> obj = productsRepository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
+
 }

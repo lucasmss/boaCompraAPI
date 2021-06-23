@@ -1,14 +1,19 @@
 package com.boaCompraAPI.products;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,10 +23,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boaCompraAPI.DTO.ProductsDTO;
 import com.boaCompraAPI.exceptions.ServiceException;
+import com.boaCompraAPI.file.FileUploadUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +55,7 @@ public class ProductsResources {
 		List<Products> products = productsService.findAll();
 		return ResponseEntity.ok().body(products);
 	}
-
+	
 	@GetMapping(value = "/products/{id}")
 	@ApiOperation(value = "Retorna o produto por id")
 	public ResponseEntity<Object> findById(@PathVariable("id") Long id){
@@ -70,10 +78,19 @@ public class ProductsResources {
 	@PostMapping(value = "/products")
 	@ApiOperation(value = "Cadastra um novo produto", notes = "Cadastra um novo produto")
 	public ResponseEntity<Object> insert(
-	      @ApiParam(name = "Produto", type = "String", required = true) @RequestBody Products products)
+	      @ApiParam(name = "Produto", type = "String", required = true) @RequestBody Products products, @RequestParam("photos") MultipartFile multipartFile)
 	      throws ServiceException {
 		HashMap<String, Object> response = new HashMap<>();
 		try {
+	        String productName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+	        
+	        products.setPhotos(productName);
+	         
+	        Products savedUser = productsService.insert(products);
+	 
+	        String uploadDir = "/.../boaCompraAPI/products-photos/" + savedUser.getId();
+
+	        FileUploadUtil.saveFile(uploadDir, productName, multipartFile);
 			products = productsService.insert(products);
 		} catch (EntityNotFoundException e) {
 			response.put(SUCESSO, false);

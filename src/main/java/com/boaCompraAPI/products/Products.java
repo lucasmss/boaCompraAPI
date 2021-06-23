@@ -15,6 +15,7 @@ import javax.validation.constraints.Digits;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.Transient;
 
 import com.boaCompraAPI.enums.EVALUATION;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,6 +29,9 @@ public class Products implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(name = "PHOTOS")
+	private String photos;
 
 	@Column(name = "PRODUCTNAME")
 	private String productName;
@@ -88,7 +92,7 @@ public class Products implements Serializable {
 	private boolean status;
 
 	@Column(name = "BARCODE")
-	private String BarCode;
+	private String barCode;
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@Column(name = "PRODUCTRECEPTDATE")
@@ -108,13 +112,21 @@ public class Products implements Serializable {
 	@Column(name = "UPDATEDATE")
 	private LocalDateTime updated;
 
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 	public String getProductName() {
@@ -128,6 +140,7 @@ public class Products implements Serializable {
 	public Long getProductQuantity() {
 		return productQuantity;
 	}
+
 
 	public void setProductQuantity(Long productQuantity) {
 		this.productQuantity = productQuantity;
@@ -149,11 +162,11 @@ public class Products implements Serializable {
 		this.description = description;
 	}
 
-	public EVALUATION getService() {
+	public EVALUATION getEvaluation() {
 		return evaluation;
 	}
 
-	public void setService(EVALUATION evaluation) {
+	public void setEvaluation(EVALUATION evaluation) {
 		this.evaluation = evaluation;
 	}
 
@@ -254,11 +267,12 @@ public class Products implements Serializable {
 	}
 
 	public String getBarCode() {
-		return BarCode;
+		return barCode;
 	}
 
+
 	public void setBarCode(String barCode) {
-		BarCode = barCode;
+		this.barCode = barCode;
 	}
 
 	public LocalDateTime getProductReceiptDate() {
@@ -295,5 +309,12 @@ public class Products implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Transient
+    public String getPhotosImagePath() {
+        if (photos == null || id == null) return null;
+         
+        return "/products-photos/" + id + "/" + photos;
 	}
 }
