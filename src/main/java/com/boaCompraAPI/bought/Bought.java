@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.boaCompraAPI.clients.Clients;
 import com.boaCompraAPI.enums.STATUSPAY;
 import com.boaCompraAPI.payment.PaymentForm;
 import com.boaCompraAPI.products.Products;
@@ -39,6 +40,11 @@ public class Bought implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "products_id")
 	private Products products;
+	
+	@NotNull
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "clients_id")
+	private Clients clients;
 
 	public Long getId() {
 		return id;
@@ -74,5 +80,13 @@ public class Bought implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Clients getClients() {
+		return clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
 	}
 }

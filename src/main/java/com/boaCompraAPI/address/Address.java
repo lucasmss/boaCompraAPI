@@ -40,6 +40,9 @@ public class Address implements Serializable{
 	@Column(name = "UF", nullable = false)
 	private String uf;
 	
+	@Column(name = "DESCRICAO_ENDERECO", nullable = false)
+	private String descricao_address;
+	
 	@NotNull
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "clients_id")
@@ -104,5 +107,12 @@ public class Address implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public String getDescricao_address() {
+		return descricao_address;
+	}
+
+	public void setDescricao_address(String descricao_address) {
+		this.descricao_address = descricao_address;
+	}
 }
