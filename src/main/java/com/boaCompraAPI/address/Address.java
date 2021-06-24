@@ -43,10 +43,6 @@ public class Address implements Serializable{
 	@Column(name = "DESCRICAO_ENDERECO", nullable = false)
 	private String descricao_address;
 	
-	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "clients_id")
-	private Clients clients;
 
 	public Long getId() {
 		return id;
@@ -94,14 +90,6 @@ public class Address implements Serializable{
 
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
-
-	public Clients getClients() {
-		return clients;
-	}
-
-	public void setClients(Clients clients) {
-		this.clients = clients;
 	}
 
 	public static long getSerialversionuid() {
