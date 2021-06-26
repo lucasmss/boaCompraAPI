@@ -49,7 +49,6 @@ public class Clients implements Serializable {
 	
 	@Column(name = "SENDIG_EMAIL_TERM", nullable = false)
 	private boolean sending_email_term;
-	
 
 	public Long getId() {
 		return id;
@@ -67,24 +66,20 @@ public class Clients implements Serializable {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public String getBirth() {
 		return birth;
 	}
 
 	public void setBirth(String birth) {
 		this.birth = birth;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public GENDER getGender() {
@@ -135,4 +130,7 @@ public class Clients implements Serializable {
 		this.sending_email_term = sending_email_term;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }
