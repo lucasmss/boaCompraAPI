@@ -43,6 +43,13 @@ public class Clients implements Serializable {
 
 	@Column(name = "CELL")
 	private String cell;
+	
+	@Column(name = "DATA_USE_TERM", nullable = false)
+	private boolean date_use_term;
+	
+	@Column(name = "SENDIG_EMAIL_TERM", nullable = false)
+	private boolean sending_email_term;
+	
 
 	public Long getId() {
 		return id;
@@ -110,6 +117,22 @@ public class Clients implements Serializable {
 
 	public void setCell(String cell) {
 		this.cell = cell;
+	}
+
+	public boolean isDate_use_term() {
+		return date_use_term;
+	}
+
+	public void setDate_use_term(boolean date_use_term) {
+		this.date_use_term = date_use_term;
+	}
+
+	public boolean isSending_email_term() {
+		return sending_email_term;
+	}
+
+	public void setSending_email_term(boolean sending_email_term) {
+		this.sending_email_term = sending_email_term;
 	}
 
 }
