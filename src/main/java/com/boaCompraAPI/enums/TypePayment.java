@@ -1,4 +1,4 @@
-package com.boaCompraAPI.payment;
+package com.boaCompraAPI.enums;
 
 public enum TypePayment {
 	

@@ -64,10 +64,7 @@ public class PaymentFormService {
 	private void updateData(PaymentForm paymantForm, PaymentForm obj) {
 
 		paymantForm.setId(obj.getId());
-		paymantForm.setCv(obj.getCv());
-		paymantForm.setDate(obj.getDate());
 		paymantForm.setName(obj.getName());
-		paymantForm.setNumber(obj.getNumber());
 		paymantForm.setTypePayment(obj.getTypePayment());
 		
 	}

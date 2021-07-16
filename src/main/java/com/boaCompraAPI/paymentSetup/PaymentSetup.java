@@ -14,7 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
+import com.stripe.model.Customer;
+import com.stripe.model.PaymentIntent;
 import com.stripe.model.checkout.Session;
+import com.stripe.net.RequestOptions;
+import com.stripe.param.ChargeRetrieveParams;
+import com.stripe.param.PaymentIntentCreateParams;
 import com.stripe.param.checkout.SessionCreateParams;
 
 import io.swagger.annotations.Api;
@@ -32,36 +38,18 @@ public class PaymentSetup {
     private static void init() {
 		Stripe.apiKey = "Your_secret_key";
 	}
+    
+   
 	  @PostMapping("/paymentSetup")
 	    public @ResponseBody
-	    ResponseEntity<Object> createSession(String email, String token) throws StripeException {
+	    ResponseEntity<Object> createPayment(String email, String token) throws StripeException {
 		  Stripe.apiKey = secretKey;
-	    	SessionCreateParams params =
-	    		        SessionCreateParams.builder()
-	    		          .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
-	    		          .setMode(SessionCreateParams.Mode.PAYMENT)
-	    		          .setSuccessUrl("https://example.com/success")
-	    		          .setCancelUrl("https://example.com/cancel")
-	    		          .addLineItem(
-	    		          SessionCreateParams.LineItem.builder()
-	    		            .setQuantity(1L)
-	    		            .setPriceData(
-	    		              SessionCreateParams.LineItem.PriceData.builder()
-	    		                .setCurrency("brl")
-	    		                .setUnitAmount(20l)
-	    		                .setProductData(
-	    		                  SessionCreateParams.LineItem.PriceData.ProductData.builder()
-	    		                    .setName("T-shirt")
-	    		                    .build())
-	    		                .build())
-	    		            .build())
-	    		          .build();
-
-	    		      Session session = Session.create(params);
-
-	    		      Map<String, String> responseData = new HashMap();
-	    		      responseData.put("id", session.getId());
-	        return ResponseEntity.ok().body(responseData);
+		PaymentIntentCreateParams createParams = new PaymentIntentCreateParams.Builder()
+				.setCurrency("brl")
+				.setAmount(15 * 100l)
+				.build();
+				
+	    		PaymentIntent intent = PaymentIntent.create(createParams);      
+	        return ResponseEntity.ok().body(intent);
 	    }
-
 }

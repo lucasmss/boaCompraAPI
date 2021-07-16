@@ -4,19 +4,21 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table; 
+import javax.persistence.Table;
 
 import com.boaCompraAPI.clients.Clients;
 import com.boaCompraAPI.products.Products;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "TBL_SHOOPING_CART")
+@Table(name = "TBL_SHOPPING_CART")
 public class ShoppingCart implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -26,13 +28,13 @@ public class ShoppingCart implements Serializable{
 	private Long id;
 	
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "clients_id")
+	@ManyToOne
+	@JoinColumn(name="id_client_fk")
 	private Clients clients;
 	
 	@NotNull
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "products_id")
+	@ManyToOne
+	@JoinColumn(name="id_products_fk")
 	private Products products;
 
 	public Long getId() {

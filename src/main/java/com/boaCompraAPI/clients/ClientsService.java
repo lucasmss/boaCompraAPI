@@ -71,5 +71,6 @@ public class ClientsService {
 		clients.setEmail(obj.getEmail());
 		clients.setGender(obj.getGender());
 		clients.setTelphone(obj.getTelphone());
+		clients.setAdmin_permission(obj.isAdmin_permission());
 	}
 }

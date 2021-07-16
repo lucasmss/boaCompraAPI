@@ -49,7 +49,7 @@ public class Products implements Serializable {
 	private EVALUATION evaluation;
 
 	@Column(name = "PRODUCTPRICE")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0,00")
+	@JsonFormat(pattern = "0,00")
 	private BigDecimal productPrice;
 
 	@Column(name = "PRODUCTCODE", nullable = false)
@@ -111,7 +111,7 @@ public class Products implements Serializable {
 	@UpdateTimestamp
 	@Column(name = "UPDATEDATE")
 	private LocalDateTime updated;
-
+	
 	public Long getId() {
 		return id;
 	}

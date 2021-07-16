@@ -2,10 +2,10 @@ package com.boaCompraAPI.enums;
 
 public enum EVALUATION {
 	
-	REGULAR("0", "regular"),
-	BOM("1", "bom"),
-	OTIMO("2", "otimo"),
-	EXCELENTE("3", "excelente");
+	BAIXO("0", "baixo"),
+	REGULAR("1", "regular"),
+	MEDIO("2", "medio"),
+	URGENTE("3", "urgente");
 	
 	private String code;
 	private String evaluation;

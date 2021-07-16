@@ -49,6 +49,9 @@ public class Clients implements Serializable {
 	
 	@Column(name = "SENDIG_EMAIL_TERM", nullable = false)
 	private boolean sending_email_term;
+	
+	@Column(name = "ADMIN_PERMISSION")
+	private boolean admin_permission;
 
 	public Long getId() {
 		return id;
@@ -132,5 +135,13 @@ public class Clients implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isAdmin_permission() {
+		return admin_permission;
+	}
+
+	public void setAdmin_permission(boolean admin_permission) {
+		this.admin_permission = admin_permission;
 	}
 }

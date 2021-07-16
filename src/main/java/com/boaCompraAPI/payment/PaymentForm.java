@@ -1,7 +1,6 @@
 package com.boaCompraAPI.payment;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.boaCompraAPI.address.Address;
+import com.boaCompraAPI.enums.TypePayment;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -37,15 +37,6 @@ public class PaymentForm implements Serializable{
 	@Column(name = "NAME", nullable = false)
 	private String name;
 	
-	@Column(name = "NUMBER", nullable = false)
-	private String number;
-	
-	@Column(name = "CV", nullable = false)
-	private String cv;
-
-	@Column(name = "DATE", nullable = false)
-	private Date date;
-
 	public Long getId() {
 		return id;
 	}
@@ -76,30 +67,6 @@ public class PaymentForm implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public String getCv() {
-		return cv;
-	}
-
-	public void setCv(String cv) {
-		this.cv = cv;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public static long getSerialversionuid() {

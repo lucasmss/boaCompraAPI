@@ -34,6 +34,9 @@ public class Support  implements Serializable{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "clients_id")
 	private Clients clients;
+	
+	@Column(name = "ATTENDED")
+	private boolean attended;
 
 	public Long getId() {
 		return id;
@@ -69,5 +72,13 @@ public class Support  implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isAttended() {
+		return attended;
+	}
+
+	public void setAttended(boolean attended) {
+		this.attended = attended;
 	}
 }
