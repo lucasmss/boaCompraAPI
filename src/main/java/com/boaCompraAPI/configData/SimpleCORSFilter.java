@@ -29,10 +29,10 @@ public class SimpleCORSFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		response.setHeader("Access-Control-Allow-Origin", "https://boa-compra-front.vercel.app/");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-		response.setHeader("Access-Control-Max-Age", "4200");
+		response.setHeader("Access-Control-Max-Age", "https://boa-compra-front.vercel.app/");
 		response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 		chain.doFilter(req, res);
