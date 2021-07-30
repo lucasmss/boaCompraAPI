@@ -49,7 +49,9 @@ public class Products implements Serializable {
 	private EVALUATION evaluation;
 
 	@Column(name = "PRODUCTPRICE")
-	@JsonFormat(pattern = "0,00")
+	@Digits(integer = 3, fraction = 2)
+	@DecimalMin(value = "0,00", inclusive = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0,00")
 	private BigDecimal productPrice;
 
 	@Column(name = "PRODUCTCODE", nullable = false)
